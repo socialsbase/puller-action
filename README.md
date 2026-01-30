@@ -87,6 +87,8 @@ jobs:
           echo "Committed: ${{ steps.puller.outputs.committed }}"
 ```
 
+See [`examples/workflows/`](examples/workflows/) for more workflow examples.
+
 ## How It Works
 
 This action downloads the [Puller](https://github.com/socialsbase/puller) binary from the latest release and runs it to pull content from the specified platform. The pulled content is automatically committed to the target branch.

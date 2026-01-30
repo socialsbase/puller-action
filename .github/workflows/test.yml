@@ -1,0 +1,27 @@
+name: Test Action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test puller-action
+        id: puller
+        uses: socialsbase/puller-action@v1
+        env:
+          VIBE_FOREM_API_KEY: ${{ secrets.VIBE_FOREM_API_KEY }}
+        with:
+          platform: devto
+          output-dir: content
+          dry-run: true
+
+      - name: Show results
+        run: |
+          echo "Pulled: ${{ steps.puller.outputs.pulled-count }}"
+          echo "Skipped: ${{ steps.puller.outputs.skipped-count }}"
